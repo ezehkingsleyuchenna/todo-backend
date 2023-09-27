@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->string('task');
-            $table->enum('status', ['active', 'completed'])->default('active');
+            $table->enum('status', \App\Enums\TaskStatus::values())->default(\App\Enums\TaskStatus::Active);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
