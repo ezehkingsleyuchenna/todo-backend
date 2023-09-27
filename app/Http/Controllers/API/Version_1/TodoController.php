@@ -16,10 +16,25 @@ class TodoController extends Controller
         $validator = Validator::make($request->all(), ['task' => ['required', 'string', 'max:255']]);
 //        check for failed validations
         if ($validator->fails())
-            return response()->json(['status' => false, 'error' => $validator->errors()], 400);
+            return response()->json(['status' => false, 'message' => $validator->errors()], 400);
 //        add task
-        $query = Todo::query()->create(['task' => $request->task]);
+        $todo = Todo::query()->create(['task' => $request->task]);
 //        return success with a created task
-        return response()->json(['status' => true, 'message' => 'Success', 'data' => $query]);
+        return response()->json(['status' => true, 'message' => 'Success!!', 'data' => $todo]);
+    }
+
+    public function completed(Todo $todo): \Illuminate\Http\JsonResponse
+    {
+//        check if todo exist
+        if (! $todo->exists)
+            return response()->json(['status' => false, 'message' => 'Task does not exist.'], 400);
+//        check if a task is still active
+        if ($todo->status !== 'active')
+            return response()->json(['status' => false, 'message' => 'Task already completed.'], 400);
+//        complete task
+        $todo->status = 'completed';
+        $todo->save();
+//        return success with a created task
+        return response()->json(['status' => true, 'message' => 'Success!!', 'data' => $todo]);
     }
 }

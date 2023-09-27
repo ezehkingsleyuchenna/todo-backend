@@ -21,5 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/v1')->group(function () {
 //    Create Todo
     Route::post('/create', [\App\Http\Controllers\API\Version_1\TodoController::class, 'create']);
-
+//    Complete task
+    Route::get('/completed/{todo}', [\App\Http\Controllers\API\Version_1\TodoController::class, 'completed']);
 });
