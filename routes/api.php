@@ -19,8 +19,10 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::prefix('/v1')->group(function () {
-//    Create Todo
+//    Create a task
     Route::post('/create', [\App\Http\Controllers\API\Version_1\TodoController::class, 'create']);
-//    Complete task
+//    Complete a task
     Route::get('/completed/{todo}', [\App\Http\Controllers\API\Version_1\TodoController::class, 'completed']);
+//    Delete a task
+    Route::delete('/delete/{todo}', [\App\Http\Controllers\API\Version_1\TodoController::class, 'delete']);
 });

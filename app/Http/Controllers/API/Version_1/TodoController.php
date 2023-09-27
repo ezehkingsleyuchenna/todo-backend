@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API\Version_1;
 
-use App\Enums\TaskStatus;
 use App\Models\Todo;
+use App\Enums\TaskStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +21,7 @@ class TodoController extends Controller
 //        add task
         $todo = Todo::query()->create(['task' => $request->task]);
 //        return success with a created task
-        return response()->json(['status' => true, 'message' => 'Success!!', 'data' => $todo]);
+        return response()->json(['status' => true, 'message' => 'Task created!!', 'data' => $todo]);
     }
 
     public function completed(Todo $todo): \Illuminate\Http\JsonResponse
@@ -35,7 +35,21 @@ class TodoController extends Controller
 //        complete task
         $todo->status = TaskStatus::Completed;
         $todo->save();
-//        return success with a created task
-        return response()->json(['status' => true, 'message' => 'Success!!', 'data' => $todo]);
+//        return success
+        return response()->json(['status' => true, 'message' => 'Task Completed!!', 'data' => $todo]);
+    }
+
+    public function delete(Todo $todo): \Illuminate\Http\JsonResponse
+    {
+//        check if todo exist
+        if (! $todo->exists)
+            return response()->json(['status' => false, 'message' => 'Task does not exist.'], 400);
+//        check if a task is still active
+        if ($todo->status !== TaskStatus::Active)
+            return response()->json(['status' => false, 'message' => 'Delete is not allowed on completed task.'], 400);
+//        delete
+        $todo->delete();
+//        return success
+        return response()->json(['status' => true, 'message' => 'Task deleted!!']);
     }
 }
