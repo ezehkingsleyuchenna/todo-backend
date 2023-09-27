@@ -27,4 +27,6 @@ Route::prefix('/v1')->group(function () {
     Route::delete('/delete/{todo}', [\App\Http\Controllers\API\Version_1\TodoController::class, 'delete']);
 //    todos
     Route::get('/todos/{status?}', [\App\Http\Controllers\API\Version_1\TodoController::class, 'todos']);
+//    clear completed
+    Route::delete('/clear-completed-tasks', [\App\Http\Controllers\API\Version_1\TodoController::class, 'clearCompletedTasks']);
 });

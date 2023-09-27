@@ -11,4 +11,14 @@ enum TaskStatus: string
     {
         return array_column(self::cases(), 'value');
     }
+
+    public static function checkActive($value): bool
+    {
+        return ($value == self::Active->value);
+    }
+
+    public static function checkCompleted($value): bool
+    {
+        return ($value == self::Completed->value);
+    }
 }
