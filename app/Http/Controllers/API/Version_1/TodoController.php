@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Version-1;
+namespace App\Http\Controllers\API\Version_1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,4 +8,8 @@ use Illuminate\Http\Request;
 class TodoController extends Controller
 {
     //
+    public function create()
+    {
+        
+    }
 }
