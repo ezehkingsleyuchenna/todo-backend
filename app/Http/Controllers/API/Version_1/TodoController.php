@@ -2,14 +2,24 @@
 
 namespace App\Http\Controllers\API\Version_1;
 
-use App\Http\Controllers\Controller;
+use App\Models\Todo;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class TodoController extends Controller
 {
     //
-    public function create()
+    public function create(Request $request): \Illuminate\Http\JsonResponse
     {
-        
+//        Validate request
+        $validator = Validator::make($request->all(), ['task' => ['required', 'string', 'max:255']]);
+//        check for failed validations
+        if ($validator->fails())
+            return response()->json(['status' => false, 'error' => $validator->errors()], 400);
+//        add task
+        $query = Todo::query()->create(['task' => $request->task]);
+//        return success with a created task
+        return response()->json(['status' => true, 'message' => 'Success', 'data' => $query]);
     }
 }
