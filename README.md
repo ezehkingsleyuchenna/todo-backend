@@ -26,7 +26,7 @@ php artisan key:generate
 
 ### Database
 
-**Create `database.sqlite` in database directory**
+- **Create `database.sqlite` in database directory**
 
 ### Migrate tables
 ```
@@ -35,7 +35,7 @@ php artisan migrate
 
 ## API Documentation
 ### BASE URL
-```http request
+```
 https://todo-backend.test/api/v1
 ```
 **Content-Type** `application/json`
@@ -43,9 +43,9 @@ https://todo-backend.test/api/v1
 ## Endpoints
 
 ### Create task
-`POST /create`
+
 ```http request
-https://todo-backend.test/api/v1/create
+POST https://todo-backend.test/api/v1/create
 ```
 
 | Parameter | Type     | Description          | Required |
@@ -54,41 +54,35 @@ https://todo-backend.test/api/v1/create
 
 ### Complete task
 
-[//]: # (`GET /completed/:todo`)
-```http
+```http request
 GET https://todo-backend.test/api/v1/completed/:todo
 ```
 **NOTE:** `:todo = id`
 
 ### Delete task
-`GET /delete/:todo`
-```http
-https://todo-backend.test/api/v1/delete/:todo
+
+```http request
+GET https://todo-backend.test/api/v1/delete/:todo
 ```
 **NOTE:** `:todo = id`
 
 ### Filter Todos
-`Get /todos/?status`
+
 ```http request
-https://todo-backend.test/api/v1/todos
-```
-```http request
-https://todo-backend.test/api/v1/todos/active
-```
-```http request
-https://todo-backend.test/api/v1/todos/completed
+GET https://todo-backend.test/api/v1/todos/:status
 ```
 
-| Parameter | Type     | Description                               | Required | Possible values | Default |
-|:----------|:---------|:------------------------------------------|----------|-----------------|:--------|
-| `limit`   | `int`    | Number of records in one page.            | false    | 1 - 100         | 20      |
-| `page`    | `int`    | The page number you want to get.          | false    | 1 - page count  |         |
-| `orderBy` | `string` | Display in ascending or descending order. | false    | asc, desc       | asc     |
+| Parameter | Type     | Description                                                                               | Required | Possible values          | Default |
+|:----------|:---------|:------------------------------------------------------------------------------------------|----------|--------------------------|:--------|
+| `status`  | `string` | Specifies the status of the todos to retrieve.<br/> eg. /todos/(all, active or completed) | false    | [all, active, completed] | all     |
+| `limit`   | `int`    | Number of records in one page.                                                            | false    | 1 - 100                  | 20      |
+| `page`    | `int`    | The page number you want to get.                                                          | false    | 1 - page count           |         |
+| `orderBy` | `string` | Display in ascending or descending order.                                                 | false    | [asc, desc]              | asc     |
 
 ### Clear completed task
-`GET /clear-completed-tasks`
+
 ```http request
-https://todo-backend.test/api/v1/clear-completed-tasks
+GET https://todo-backend.test/api/v1/clear-completed-tasks
 ```
 
 
