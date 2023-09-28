@@ -53,9 +53,10 @@ https://todo-backend.test/api/v1/create
 | `task`    | `string` | User task (Max: 225) | true     |
 
 ### Complete task
-`GET /completed/:todo`
-```http request
-https://todo-backend.test/api/v1/completed/:todo
+
+[//]: # (`GET /completed/:todo`)
+```http
+GET https://todo-backend.test/api/v1/completed/:todo
 ```
 **NOTE:** `:todo = id`
 
