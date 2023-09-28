@@ -1,10 +1,13 @@
-# Todo List
+# Todo Backend
 
-## System Requirements
+## Introduction
+This is a Todo list backend application.
+
+### Dependencies
 - PHP `^v8.1`
 - Composer `^v2`
 
-## Installation
+## Installing
 
 ```
 git clone https://github.com/ezehkingsleyuchenna/todo-backend.git
@@ -58,7 +61,7 @@ https://todo-backend.test/api/v1/completed/:todo
 
 ### Delete task
 `GET /delete/:todo`
-```http request
+```http
 https://todo-backend.test/api/v1/delete/:todo
 ```
 **NOTE:** `:todo = id`
