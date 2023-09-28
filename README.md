@@ -54,14 +54,14 @@ https://todo-backend.test/api/v1/create
 ```http request
 https://todo-backend.test/api/v1/completed/:todo
 ```
-**NOTE:** `:todo is the id`
+**NOTE:** `:todo = id`
 
 ### Delete task
 `GET /delete/:todo`
 ```http request
 https://todo-backend.test/api/v1/delete/:todo
 ```
-**NOTE:** `:todo is the id`
+**NOTE:** `:todo = id`
 
 ### Filter Todos
 `Get /todos/?status`
