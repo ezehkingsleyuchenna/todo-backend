@@ -11,7 +11,7 @@ git clone https://github.com/ezehkingsleyuchenna/todo-backend.git
 composer install
 ```
 
-**Create .env file on the root folder**
+**Create .env file in the root folder**
 
 **Copy env data from .env.example**
 
@@ -39,8 +39,8 @@ https://todo-backend.test/api/v1
 https://todo-backend.test/api/v1/create
 ```
 
-| Parameter | Type | Description             |
-|:----------| :--- |:------------------------|
+| Parameter | Type     | Description             |
+|:----------|:---------|:------------------------|
 | `task`    | `string` | **Required**. User task |
 
 ### Complete task
@@ -69,11 +69,11 @@ https://todo-backend.test/api/v1/todos/active
 https://todo-backend.test/api/v1/todos/completed
 ```
 
-| Parameter | Type     | Description                                                                                      | Default |
-|:----------|:---------|:-------------------------------------------------------------------------------------------------|:--------|
-| `limit`   | `int`    | **Nullable** <br/> Number of records in one page (1 - 100).                                      | 20      |
-| `page`    | `int`    | **Nullable** <br/>The page number you want to get. (0 - page count)                              |         |
-| `orderBy` | `string` | **Nullable** <br/>Display in ascending or descending order.<br/> (possible values: asc, desc)    | asc     |
+| Parameter | Type     | Description                                                                 | Possible values | Default |
+|:----------|:---------|:----------------------------------------------------------------------------|-----------------|:--------|
+| `limit`   | `int`    | **Nullable** <br/> Number of records in one page.                           | 1 - 100         | 20      |
+| `page`    | `int`    | **Nullable** <br/>The page number you want to get.                          | 1 - page count  |         |
+| `orderBy` | `string` | **Nullable** <br/>Display in ascending or descending order.                 | asc, desc       | asc     |
 
 
 ## Responses
@@ -83,7 +83,7 @@ response in the following format:
 
 ```javascript
 {
-    "status" : bool,
+    "status"  : bool,
     "message" : string,
     "data"    : string
 }
@@ -97,12 +97,12 @@ The `data` attribute contains response data, like a created task, a completed ta
 
 ## Status Codes
 
-| Status Code | Description     |
-| :--- |:-----------------------|
-| 200 | `OK`                    |
-| 400 | `BAD REQUEST`           |
-| 404 | `NOT FOUND`             |
-| 500 | `INTERNAL SERVER ERROR` |
+| Status Code | Description             |
+|:------------|:------------------------|
+| 200         | `OK`                    |
+| 400         | `BAD REQUEST`           |
+| 404         | `NOT FOUND`             |
+| 500         | `INTERNAL SERVER ERROR` |
 
 ## License
 

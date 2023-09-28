@@ -58,11 +58,15 @@ class TodoController extends Controller
         try {
 //            limit
             $limit = $request->limit ?: 20;
+            if ($limit < 1 || $limit > 100) $limit = 20;
 //            assign query
             $query = Todo::query();
 //            check status
             if (in_array($status, TaskStatus::values()))
                 $query = $query->whereStatus($status);
+//            orderBy
+            if ($request->orderBy and in_array($request->orderBy, ['asc', 'desc']))
+                $query = $query->orderBy('created_at', $request->orderBy);
 //            check for page number
             if ($request->page)
                 $query = $query->paginate($limit, page: $request->page)->toArray();
