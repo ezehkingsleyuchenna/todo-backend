@@ -1,8 +1,8 @@
 # Todo List
 
 ## System Requirements
-- PHP **V8**
-- Composer **^V2**
+- PHP `^v8.1`
+- Composer `^v2`
 
 ## Installation
 
@@ -11,16 +11,21 @@ git clone https://github.com/ezehkingsleyuchenna/todo-backend.git
 composer install
 ```
 
-**Create .env file in the root folder**
+### Environment file
+- **Create `.env` file in the root folder**
 
-**Copy env data from .env.example**
+- **Copy `.env` data from `.env.example`**
 
+### Generate App key
 ```
 php artisan key:generate
 ```
 
-**Create database.sqlite in database directory**
+### Database
 
+**Create `database.sqlite` in database directory**
+
+### Migrate tables
 ```
 php artisan migrate
 ```
@@ -30,8 +35,9 @@ php artisan migrate
 ```http request
 https://todo-backend.test/api/v1
 ```
-### Content-Type
-`application/json`
+**Content-Type** `application/json`
+
+## Endpoints
 
 ### Create task
 `POST /create`
@@ -39,9 +45,9 @@ https://todo-backend.test/api/v1
 https://todo-backend.test/api/v1/create
 ```
 
-| Parameter | Type     | Description             |
-|:----------|:---------|:------------------------|
-| `task`    | `string` | **Required**. User task |
+| Parameter | Type     | Description          | Required |
+|:----------|:---------|:---------------------|----------|
+| `task`    | `string` | User task (Max: 225) | true     |
 
 ### Complete task
 `GET /completed/:todo`
@@ -69,11 +75,17 @@ https://todo-backend.test/api/v1/todos/active
 https://todo-backend.test/api/v1/todos/completed
 ```
 
-| Parameter | Type     | Description                                                                 | Possible values | Default |
-|:----------|:---------|:----------------------------------------------------------------------------|-----------------|:--------|
-| `limit`   | `int`    | **Nullable** <br/> Number of records in one page.                           | 1 - 100         | 20      |
-| `page`    | `int`    | **Nullable** <br/>The page number you want to get.                          | 1 - page count  |         |
-| `orderBy` | `string` | **Nullable** <br/>Display in ascending or descending order.                 | asc, desc       | asc     |
+| Parameter | Type     | Description                               | Required | Possible values | Default |
+|:----------|:---------|:------------------------------------------|----------|-----------------|:--------|
+| `limit`   | `int`    | Number of records in one page.            | false    | 1 - 100         | 20      |
+| `page`    | `int`    | The page number you want to get.          | false    | 1 - page count  |         |
+| `orderBy` | `string` | Display in ascending or descending order. | false    | asc, desc       | asc     |
+
+### Clear completed task
+`GET /clear-completed-tasks`
+```http request
+https://todo-backend.test/api/v1/clear-completed-tasks
+```
 
 
 ## Responses
